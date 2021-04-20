@@ -1,2 +1,2 @@
-# java_temp_repository
+# JavaTempRepository
 a repository of java temp project
