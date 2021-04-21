@@ -58,8 +58,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-		<!-- add by haiqin.liao end -->
+		<!-- add by haiqin.liao end -->		
+		
+
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.55</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		
+		
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -69,4 +89,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- test pull request -->
 </project>
