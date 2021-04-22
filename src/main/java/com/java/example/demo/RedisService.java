@@ -1,6 +1,7 @@
 package com.java.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class RedisService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     private static double size = Math.pow(2, 32);
 
@@ -56,6 +60,70 @@ public class RedisService {
             e.printStackTrace();
         }
         return result;
+    }
+    
+    /**
+     * 获取key的集合
+     * 
+     * @param pattern 正则
+     * @return
+     */
+    public Set<String> getKeys(String pattern) {
+    	try {
+        	Set<String> set = stringRedisTemplate.keys(pattern);
+        	if(!set.isEmpty()) {
+        		return set;
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
+    /**
+     * 判断key是否存在
+     * 
+     * @param keys
+     * @return 1 存在  ，  0 不存在
+     */
+    public Long isExits(List keys) {
+    	try {
+			Long long1 = stringRedisTemplate.countExistingKeys(keys);
+			return long1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
+    /**
+     * 删除key
+     * @param keys
+     * @return 0 失败
+     */
+    public Long delByKey(List keys) {
+    	try {
+			Long long1 = stringRedisTemplate.delete(keys);
+			return long1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
+    /**
+     * 获取数据类型
+     * @param key
+     * @return
+     */
+    public DataType getType(String key) {
+    	try {
+    		DataType dataType = stringRedisTemplate.type(key);
+    		return dataType;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
     }
 
 
