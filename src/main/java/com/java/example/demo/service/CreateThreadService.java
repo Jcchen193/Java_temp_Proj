@@ -7,5 +7,6 @@ public interface CreateThreadService {
 	List<String> getThreadByThread();
 	List<String> getThreadByRunable();
 	List<String> getThreadByCallable();
+	List<String> getMultipleThreadByThread();
 
 }

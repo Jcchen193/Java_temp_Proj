@@ -29,12 +29,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	UsersMapper usersMapper;  
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {;
-		Users users = usersMapper.getUsersByUserName(username);
-		if(users == null) {
-			throw new UsernameNotFoundException("User Not Found");
-		}
-		List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(users.getRole());
-		return new User(users.getUserName(), new BCryptPasswordEncoder().encode(users.getPassword()), authorities);
+//		Users users = usersMapper.getUsersByUserName(username);
+	String name = "admin";
+	String password="12345";
+//		if(users == null) {
+//			throw new UsernameNotFoundException("User Not Found");
+//		}
+		List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("admin");
+//		return new User(users.getUserName(), new BCryptPasswordEncoder().encode(users.getPassword()), authorities);
+		return new User(name, new BCryptPasswordEncoder().encode(password), authorities);
 	}
 
 }

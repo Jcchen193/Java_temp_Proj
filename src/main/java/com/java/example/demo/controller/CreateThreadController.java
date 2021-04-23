@@ -23,6 +23,13 @@ public class CreateThreadController {
         return resulsts;
     }
     
+    @RequestMapping("/createThread/mutipleThread")
+    @ResponseBody
+    public List<String> createMutipleThreadByThread(){
+    	List<String> resulsts = threadService.getMultipleThreadByThread();
+        return resulsts;
+    }
+    
     @RequestMapping("/createThread/byRunable")
     @ResponseBody
     public List<String> createThreadByRunable(){

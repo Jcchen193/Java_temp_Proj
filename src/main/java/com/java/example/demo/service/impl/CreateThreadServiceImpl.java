@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.java.example.demo.service.CreateThreadService;
 
-import io.netty.util.concurrent.Future;
-
 @Service
 public class CreateThreadServiceImpl implements CreateThreadService {
 
@@ -69,6 +67,26 @@ public class CreateThreadServiceImpl implements CreateThreadService {
 		 e.printStackTrace();
 		 }
 		 return threadList;
+	}
+
+	@Override
+	public List<String> getMultipleThreadByThread() {
+		//通过实现runnable接口创建多并发的线程
+		List<String> threadList = new ArrayList<String>();
+		for (int i = 0; i < 10; i++) {
+			Thread t = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					//System.out.println("我是" + Thread.currentThread().getName() + ".");
+					threadList.add("我是" + Thread.currentThread().getName() + ".");
+				}
+			});
+			t.start();
+		}
+		
+		return threadList;
+
 	}
 	
 }
