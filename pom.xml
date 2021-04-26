@@ -101,6 +101,12 @@
 			<artifactId>jedis</artifactId>
 		</dependency>
 		
+		<!-- add by Wen Ke start -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
 	</dependencies>
 
 
