@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/login/login" method="post">
+	用户名：<input type="text" name="username">
+	<br/>
+	密码：<input type="password" name="password">
+	<br/>
+	<input type="checkbox" name="remember-me">自动登录
+	<br/>
+	<input type="text" th:value="${_csrf.Token}">
+	<input type="submit" value="login">
+</form>
+
+</body>
+</html>

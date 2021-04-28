@@ -36,11 +36,11 @@
 		</dependency>
 
 		<!-- add by haiqin.liao end -->
-		<dependency>
+	<!--  	<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.1.2</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -60,28 +60,48 @@
 		</dependency>
 		<!-- add by haiqin.liao end -->
 		<!-- add by Yan Ze Xiang start -->  
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-	        <groupId>org.projectlombok</groupId>
-	        <artifactId>lombok</artifactId>
-	    </dependency>
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		 <!--mybatis-plus 持久层-->
+         <dependency>
+             <groupId>com.baomidou</groupId>
+             <artifactId>mybatis-plus-boot-starter</artifactId>
+             <version>3.0.5</version>
+         </dependency>
+         <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
+         <dependency>
+             <groupId>org.apache.velocity</groupId>
+             <artifactId>velocity-engine-core</artifactId>
+             <version>2.0</version>
+         </dependency>
+         <dependency>
+             <groupId>com.google.code.gson</groupId>
+             <artifactId>gson</artifactId>
+         </dependency>
+         <!-- JWT -->
+         <dependency>
+             <groupId>io.jsonwebtoken</groupId>
+             <artifactId>jjwt</artifactId>
+             <version>0.7.0</version>
+         </dependency>
+         <dependency>
+             <groupId>org.json</groupId>
+             <artifactId>json</artifactId>
+             <version>20170516</version>
+         </dependency>
+          <!--lombok用来简化实体类：需要安装lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided </scope>
+        </dependency>
+        <!-- spring2.X集成redis所需common-pool2-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <dependency>
-	        <groupId>org.thymeleaf.extras</groupId>
-	        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-	    </dependency>
 	    <!-- add by Yan Ze Xiang end -->
 		
 
