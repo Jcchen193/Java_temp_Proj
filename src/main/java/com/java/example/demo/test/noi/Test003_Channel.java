@@ -1,7 +1,5 @@
 ﻿package com.java.example.demo.test.noi;
 
-
-package com.example.test.Controller;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
