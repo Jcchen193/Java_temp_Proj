@@ -1,4 +1,4 @@
-package com.example.test.Client;
+﻿package com.java.example.demo.client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
