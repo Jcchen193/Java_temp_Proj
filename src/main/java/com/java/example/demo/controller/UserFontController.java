@@ -2,8 +2,8 @@ package com.java.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.java.example.demo.RedisService;
 import com.java.example.demo.domain.UserFont;
+import com.java.example.demo.service.RedisService;
 import com.java.example.demo.service.UserFontService;
 
 import java.util.ArrayList;
@@ -79,6 +79,10 @@ public class UserFontController {
         return redisService.zRank(rankKey, id);
     }
 
+    /**
+     * 
+     * @return
+     */
     @RequestMapping("/get_all_keys")
     public String getKeys(){
         Set<String> set = redisService.getKeys(allKeysPattern);
