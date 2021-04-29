@@ -22,8 +22,8 @@ public class Test003_Channel {
     public void Test001() throws IOException { 
     	long start=System.currentTimeMillis();
     	
-        FileInputStream in=new FileInputStream("src/com/example/test/Resouce/1.png");  
-        FileOutputStream out=new FileOutputStream("src/com/example/test/Resouce/2.png");
+        FileInputStream in=new FileInputStream("src/main/resources/static/images/1.png");  
+        FileOutputStream out=new FileOutputStream("src/main/resources/static/images/2.png");
 
         //获取通道
         FileChannel inChannel=in.getChannel();
@@ -54,8 +54,8 @@ public class Test003_Channel {
 
     	long start=System.currentTimeMillis();
         //获取通道Open()
-        FileChannel inChannel=FileChannel.open(Paths.get("src/com/example/test/Resouce/1.PNG"), StandardOpenOption.READ);
-        FileChannel outChannel=FileChannel.open(Paths.get("src/com/example/test/Resouce/3.PNG"), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+        FileChannel inChannel=FileChannel.open(Paths.get("src/main/resources/static/images/1.PNG"), StandardOpenOption.READ);
+        FileChannel outChannel=FileChannel.open(Paths.get("src/main/resources/static/images/3.PNG"), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 
         //内存映射文件
         MappedByteBuffer inMapBuffer=inChannel.map(MapMode.READ_ONLY,0, inChannel.size());
@@ -84,8 +84,8 @@ public class Test003_Channel {
     long start=System.currentTimeMillis();
 
     //获取通道Open()
-    FileChannel inChannel=FileChannel.open(Paths.get("src/com/example/test/Resouce/1.PNG"), StandardOpenOption.READ);
-    FileChannel outChannel=FileChannel.open(Paths.get("src/com/example/test/Resouce/4.PNG"), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+    FileChannel inChannel=FileChannel.open(Paths.get("src/main/resources/static/images/1.PNG"), StandardOpenOption.READ);
+    FileChannel outChannel=FileChannel.open(Paths.get("src/main/resources/static/images/4.PNG"), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 
     //通道之间获取用TransferFrom or transferto
     //inChannel.transferTo(0, inChannel.size(), outChannel);
