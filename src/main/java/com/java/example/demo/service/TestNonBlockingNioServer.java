@@ -71,9 +71,6 @@ public class TestNonBlockingNioServer {
 
                 //15.取消选择键SelectionKey
                 it.remove();
-
-                    
-                
             }
         }
 
