@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -92,7 +95,7 @@ public class CreateThreadServiceImpl implements CreateThreadService {
 		}
 		
 		
-		System.out.println("------------------------------");
+		//System.out.println("------------------------------");
 		
 		//2.创建线程池创建并发
 //		ExecutorService executorService = Executors.newCachedThreadPool();//创建一个可缓存的线程池
@@ -112,7 +115,7 @@ public class CreateThreadServiceImpl implements CreateThreadService {
 //		}
 //		executorService.shutdown();
 		
-		System.out.println("------------------------------");
+		//System.out.println("------------------------------");
 		//3.直接调用ThreadPoolExecutor的构造函数来创建线程池
 //		ExecutorService executor = new ThreadPoolExecutor(10, 10,
 //		        60L, TimeUnit.SECONDS,
@@ -131,6 +134,50 @@ public class CreateThreadServiceImpl implements CreateThreadService {
 		
 		return threadList;
 
+	}
+
+	@Override
+	public List<String> getConcurrentMapTest() {
+		
+		List<String> threadList = new ArrayList<String>();
+		
+		ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+
+		map.put("k1", "v1");
+
+		map.put("k2", "v2");
+
+		map.put("k1", "v2");
+
+		map.putIfAbsent("k1", "vv1");
+
+		for(Map.Entry me : map.entrySet()) {
+			System.out.println("ConcurrentMap- key: " + me.getKey() + ",value: " + me.getValue());
+			threadList.add("ConcurrentMap -key: " + me.getKey() + ",value: " + me.getValue());
+		}
+		
+		return threadList;
+
+		}
+
+	@Override
+	public List<String> getCopyOnWriteTest() {
+		List<String> threadList = new ArrayList<String>();
+		CopyOnWriteArrayList copylist = new CopyOnWriteArrayList<>();
+
+		copylist.add("1");
+
+		copylist.add("2");
+
+		for(int i=0;i<copylist.size();i++) {
+			System.out.println(copylist.get(i));
+			threadList.add("copyOnWrite:" + copylist.get(i));
+			
+		}
+
+		
+				
+		return threadList;
 	}
 	
 }

@@ -8,5 +8,7 @@ public interface CreateThreadService {
 	List<String> getThreadByRunable();
 	List<String> getThreadByCallable();
 	List<String> getMultipleThreadByThread();
+	List<String> getConcurrentMapTest();
+	List<String> getCopyOnWriteTest();
 
 }

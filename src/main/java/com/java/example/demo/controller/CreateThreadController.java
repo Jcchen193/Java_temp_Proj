@@ -23,13 +23,6 @@ public class CreateThreadController {
         return resulsts;
     }
     
-    @RequestMapping("/createThread/mutipleThread")
-    @ResponseBody
-    public List<String> createMutipleThreadByThread(){
-    	List<String> resulsts = threadService.getMultipleThreadByThread();
-        return resulsts;
-    }
-    
     @RequestMapping("/createThread/byRunable")
     @ResponseBody
     public List<String> createThreadByRunable(){
@@ -44,5 +37,25 @@ public class CreateThreadController {
     	List<String> resulsts = threadService.getThreadByCallable();
         return resulsts;
     }
+    
+    @RequestMapping("/createThread/mutipleThread")
+    @ResponseBody
+    public List<String> createMutipleThreadByThread(){
+    	List<String> resulsts = threadService.getMultipleThreadByThread();
+        return resulsts;
+    }
+    
+    @RequestMapping("/createThread/concurrentMapTest")
+    @ResponseBody
+    public List<String> concurrentMapTest(){
+    	List<String> resulsts = threadService.getConcurrentMapTest();
+        return resulsts;
+    }
 
+    @RequestMapping("/createThread/copyOnWriteTest")
+    @ResponseBody
+    public List<String> copyOnWriteTest(){
+    	List<String> resulsts = threadService.getCopyOnWriteTest();
+        return resulsts;
+    }
 }
