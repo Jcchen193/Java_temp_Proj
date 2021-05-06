@@ -393,5 +393,18 @@ public class RedisService {
         Set<ZSetOperations.TypedTuple<Object>> ret = zset.reverseRangeWithScores(key, start, end);
         return ret;
     }
+    
+    /**
+     * 读取缓存
+     *
+     * @param key
+     * @return
+     */
+    public Object genValue(final String key) {
+        Object result = null;
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+        result = operations.get(key);
+        return result;
+    }
 
 }

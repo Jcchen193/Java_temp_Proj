@@ -16,6 +16,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -24,11 +25,36 @@ import java.util.Map;
 @Configuration
 public class RedisConfig {
 	
+//    @Bean
+//    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory){
+//        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+//        redisTemplate.setConnectionFactory(factory);
+//        //redisTemplate.setEnableTransactionSupport(true);
+//        return redisTemplate;
+//    }
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory){
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory){
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String,Object>();
         redisTemplate.setConnectionFactory(factory);
-        //redisTemplate.setEnableTransactionSupport(true);
+        // 使用Jackson2JsonRedisSerialize 替换默认序列化
+        /**Jackson序列化  json占用的内存最小 */
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        /**Jdk序列化   JdkSerializationRedisSerializer是最高效的*/
+//          JdkSerializationRedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
+        /**String序列化*/
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        /**将key value 进行stringRedisSerializer序列化*/
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(stringRedisSerializer);
+        /**将HashKey HashValue 进行序列化*/
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
+
         return redisTemplate;
     }
 
